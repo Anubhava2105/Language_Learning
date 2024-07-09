@@ -5,28 +5,28 @@ import { useLocation } from "react-router-dom";
 import { setUserData } from "../../redux/actions";
 import { baseApiURL } from "../../baseUrl";
 import toast from "react-hot-toast";
+
 const Profile = () => {
   const [showPass, setShowPass] = useState(false);
   const router = useLocation();
-  const [data, setData] = useState();
+  const [data, setData] = useState(null); // Initialize data as null initially
   const dispatch = useDispatch();
   const [password, setPassword] = useState({
     new: "",
     current: "",
   });
+
   useEffect(() => {
-    const headers = {
-      "Content-Type": "application/json",
-    };
-    axios
-      .post(
-        `${baseApiURL()}/${router.state.type}/details/getDetails`,
-        { employeeId: router.state.loginid },
-        {
-          headers: headers,
-        }
-      )
-      .then((response) => {
+    const fetchUserDetails = async () => {
+      try {
+        const headers = {
+          "Content-Type": "application/json",
+        };
+        const response = await axios.post(
+          `${baseApiURL()}/${router.state.type}/details/getDetails`,
+          { employeeId: router.state.loginid },
+          { headers }
+        );
         if (response.data.success) {
           setData(response.data.user[0]);
           dispatch(
@@ -40,62 +40,59 @@ const Profile = () => {
         } else {
           toast.error(response.data.message);
         }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+      } catch (error) {
+        console.error("Error fetching user details:", error);
+        toast.error("Failed to fetch user details");
+      }
+    };
+
+    if (router.state.type && router.state.loginid) {
+      fetchUserDetails();
+    }
   }, [dispatch, router.state.loginid, router.state.type]);
 
-  const checkPasswordHandler = (e) => {
+  const checkPasswordHandler = async (e) => {
     e.preventDefault();
-    const headers = {
-      "Content-Type": "application/json",
-    };
-    axios
-      .post(
+    try {
+      const headers = {
+        "Content-Type": "application/json",
+      };
+      const response = await axios.post(
         `${baseApiURL()}/student/auth/login`,
         { loginid: router.state.loginid, password: password.current },
-        {
-          headers: headers,
-        }
-      )
-      .then((response) => {
-        if (response.data.success) {
-          changePasswordHandler(response.data.id);
-        } else {
-          toast.error(response.data.message);
-        }
-      })
-      .catch((error) => {
-        toast.error(error.response.data.message);
-        console.error(error);
-      });
+        { headers }
+      );
+      if (response.data.success) {
+        changePasswordHandler(response.data.id);
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      toast.error(error.response.data.message);
+      console.error("Error checking password:", error);
+    }
   };
 
-  const changePasswordHandler = (id) => {
-    const headers = {
-      "Content-Type": "application/json",
-    };
-    axios
-      .post(
+  const changePasswordHandler = async (id) => {
+    try {
+      const headers = {
+        "Content-Type": "application/json",
+      };
+      const response = await axios.post(
         `${baseApiURL()}/student/auth/update/${id}`,
         { loginid: router.state.loginid, password: password.new },
-        {
-          headers: headers,
-        }
-      )
-      .then((response) => {
-        if (response.data.success) {
-          toast.success(response.data.message);
-          setPassword({ new: "", current: "" });
-        } else {
-          toast.error(response.data.message);
-        }
-      })
-      .catch((error) => {
-        toast.error(error.response.data.message);
-        console.error(error);
-      });
+        { headers }
+      );
+      if (response.data.success) {
+        toast.success(response.data.message);
+        setPassword({ new: "", current: "" });
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      toast.error(error.response.data.message);
+      console.error("Error changing password:", error);
+    }
   };
 
   return (
@@ -150,7 +147,6 @@ const Profile = () => {
                 />
                 <button
                   className="mt-4 hover:border-b-2 hover:border-blue-500"
-                  onClick={checkPasswordHandler}
                   type="submit"
                 >
                   Change Password

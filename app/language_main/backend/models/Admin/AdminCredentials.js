@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
 
-const adminCredential = new mongoose.Schema({
+const adminCredentialSchema = new mongoose.Schema({
   loginid: {
     type: Number,
     required: true,
+    unique: true
   },
   password: {
     type: String,
@@ -11,4 +12,4 @@ const adminCredential = new mongoose.Schema({
   },
 }, { timestamps: true });
 
-module.exports = mongoose.model("Admin Credential", adminCredential);
+module.exports = mongoose.model("AdminCredential", adminCredentialSchema);

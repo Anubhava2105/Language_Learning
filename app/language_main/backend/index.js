@@ -7,6 +7,7 @@ var cors = require("cors");
 
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Credential Apis
 app.use("/api/student/auth", require("./routes/Student Api/studentCredential"));

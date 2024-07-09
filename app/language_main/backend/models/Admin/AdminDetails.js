@@ -11,7 +11,6 @@ const adminDetails = new mongoose.Schema({
   },
   middleName: {
     type: String,
-    required: true,
   },
   lastName: {
     type: String,
@@ -27,7 +26,6 @@ const adminDetails = new mongoose.Schema({
   },
   profile: {
     type: String,
-    required: true,
   }
 }, { timestamps: true });
 

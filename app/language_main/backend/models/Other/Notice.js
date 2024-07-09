@@ -30,12 +30,12 @@ const NoticeSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  link: {
+    type: String,
+  },
   type: {
     type: String,
     required: true,
-  },
-  link: {
-    type: String,
   },
 }, { timestamps: true });
 
