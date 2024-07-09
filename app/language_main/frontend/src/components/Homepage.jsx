@@ -2,7 +2,7 @@ import React, { useRef, useEffect}  from 'react';
 import { Link } from 'react-router-dom';
 import './Homepage.css';
 import laptopImage from '../components/laptop.png';
-import EnigmaLogo from '../components/14685508.jpg';
+import SpanioLogo from '../components/spanio.jpg';
 // import pxfuel from '../../public/pxfuel.jpg';
 import image from '../components/img.jpg';
 import { useNavigate } from 'react-router-dom';
@@ -80,8 +80,8 @@ const Homepage = () => {
     <div className="wrapper">
       <header id="Home" className="header">
         <div className="header-left">
-          <img src={EnigmaLogo} height="60px" width="80px" alt="Logo"/>
-          <h1>EnigmaEd</h1>
+          <img src={SpanioLogo} height="60px" width="80px" alt="Logo"/>
+          <h1>Spanio</h1>
         </div>
         <div className="header-right">
           <ul>
@@ -93,12 +93,12 @@ const Homepage = () => {
       </header>
 
       <main className="main">
-        <h1>Welcome to the EnigmaEd Community</h1>
+        <h1>Welcome to the Spanio+ Community</h1>
 
         <div className="content">
           <div>
-            <p>Unlock the Secrets of Learning with EnigmaEd - Where Education Meets Mystery! At EnigmaEd, we believe in transforming education into an exciting journey of discovery.</p>
-            <p>Sign up for EnigmaEd today and embark on a learning adventure like never before. Uncover the mysteries of education and unlock a world of possibilities.</p>
+            <p>Welcome to our Spanish Learning App where you can too master it like the natives do !</p>
+            <p>Sign up for Spanio+ today and embark on a learning adventure like never before. Learn new languages with assorted quiz and an associated learning material</p>
             <button className="btn" onClick={handleSignIn}>SIGN IN</button>
             <button className="btn" onClick={handleSignUp}>SIGN UP</button>
           </div>
@@ -115,8 +115,8 @@ const Homepage = () => {
                     <div class="form-wrapper">
                         <div class="contact-heading">
                             <h1>Let's work together<span>.</span></h1>
-                            <p class="text">Or reach us via: <a href="mailto:EnigmaEd@mail
-                                .com">EnigmaEd@mail.com</a></p>
+                            <p class="text">Contact us: <a href="mailto:Spanio@mail
+                                .com">Spanio@mail.com</a></p>
                         </div>
 
                         <form  ref={form} class="contact-form" onSubmit={sendEmail}>
@@ -190,7 +190,7 @@ const Homepage = () => {
       <div className="footer">
         <div class="uppercontent">
           <div className="footerhead">
-            EnigmaEd
+            Spanio
           </div>
 
           <div class="leftportion">
@@ -214,13 +214,13 @@ const Homepage = () => {
 
           <div class="rightportion">
             <p>Get in Touch</p>
-            <a href="mailto:EnigmaEd@mail.com">Email: EnigmaEd@mail.com</a>
+            <a href="mailto:Spanio@mail.com">Email: Spanio@mail.com</a>
           </div>
         </div>
         
 
         <div class="lowercontent">
-          Copyright © EnigmaEd Technologies Pvt. Limited | All Right Reserved
+          Copyright © Spanio Technologies Pvt. Limited | All Right Reserved
           </div>
       </div>
     </div>
