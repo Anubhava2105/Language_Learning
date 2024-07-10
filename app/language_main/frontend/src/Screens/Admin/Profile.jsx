@@ -156,7 +156,7 @@ const Profile = () => {
           </div>
           <img
             src={data.profile}
-            alt="student profile"
+            alt="admin profile"
             className="h-[200px] w-[200px] object-cover rounded-lg shadow-md"
           />
         </>
